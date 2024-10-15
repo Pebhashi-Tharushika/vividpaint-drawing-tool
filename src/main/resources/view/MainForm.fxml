@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" prefHeight="807.0" prefWidth="1448.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep10.app.controller.MainFormController">
+   <children>
+      <Canvas fx:id="cnvMain" height="607.0" layoutX="1.0" layoutY="1.0" onMouseDragged="#cnvMainOnMouseDragged" onMousePressed="#cnvMainOnMousePressed" onMouseReleased="#cnvMainOnMouseReleased" width="851.0" />
+      <JFXHamburger fx:id="hamburger" layoutX="14.0" layoutY="21.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="237.0" layoutX="251.0" layoutY="54.0" prefHeight="663.0" prefWidth="237.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <VBox fx:id="vBox" alignment="CENTER" prefHeight="524.0" prefWidth="237.0" spacing="30.0" style="-fx-background-color: #D8D2E7;">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="174.0" spacing="10.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8c1af6" height="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="50.0" />
+                        <ToggleButton mnemonicParsing="false" prefHeight="24.0" prefWidth="198.0" text="Rectangle" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="174.0" spacing="10.0">
+                     <children>
+                        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#8c1af6" height="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="50.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Rectangle>
+                        <ToggleButton fx:id="btnPencil11" mnemonicParsing="false" prefHeight="24.0" prefWidth="198.0" text="Rounded Rectangle" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="174.0" spacing="17.0">
+                     <children>
+                        <Circle fill="#8c1af6" radius="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Circle>
+                        <ToggleButton mnemonicParsing="false" prefHeight="24.0" prefWidth="198.0" text="Circle" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="174.0" spacing="10.0">
+                     <children>
+                        <Text fill="#8c1af6" strokeType="OUTSIDE" strokeWidth="0.0" text="T" textAlignment="CENTER" wrappingWidth="50.0">
+                           <font>
+                              <Font name="System Bold" size="42.0" />
+                           </font>
+                        </Text>
+                        <ToggleButton mnemonicParsing="false" prefHeight="24.0" prefWidth="198.0" text="Text" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/pencil.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ImageView>
+                        <ToggleButton fx:id="btnPencil" mnemonicParsing="false" prefHeight="24.0" prefWidth="198.0" text="Pencil" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="25.0" layoutY="441.0" spacing="10.0">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/eraser.png" />
+                           </image>
+                        </ImageView>
+                        <ToggleButton fx:id="btnPencil1" mnemonicParsing="false" prefHeight="24.0" prefWidth="198.0" text="Eraser" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/fill-color.png" />
+                           </image>
+                        </ImageView>
+                        <ColorPicker fx:id="clrStroke" onAction="#clrStrokeOnAction" prefHeight="24.0" prefWidth="198.0">
+                           <value>
+                              <Color />
+                           </value>
+                        </ColorPicker>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/stroke-color.png" />
+                           </image>
+                        </ImageView>
+                        <ColorPicker fx:id="clrFill" onAction="#clrFillOnAction" prefHeight="24.0" prefWidth="198.0" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+               </padding>
+            </VBox>
+         </children>
+      </JFXDrawer>
+   </children>
+</AnchorPane>
