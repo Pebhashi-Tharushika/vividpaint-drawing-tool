@@ -3,6 +3,8 @@ package lk.ijse.dep10.app.controller;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXSlider;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,6 +41,7 @@ public class MainFormController {
     public JFXSlider fontSizeSlider;
     public ComboBox<Integer> fontSizeComboBox;
     public VBox vBoxFont;
+    public ComboBox<String> fontFamilyComboBox;
     private double x1;
     private double y1;
     private WritableImage snapshot;
@@ -46,7 +49,6 @@ public class MainFormController {
     private final String selectedColor = "-fx-base: #D8D2E7;";
     private String enteredText = "";
     private TextField textField;
-    private ComboBox<String> fontFamilyComboBox;
 
 
     public void initialize() {
@@ -96,10 +98,20 @@ public class MainFormController {
         fontSizeSlider.setStyle("-jfx-default-track: #7d7d7d;" + " -jfx-default-thumb: #8c1af6;");
 
         fontSizeComboBox.setItems(FXCollections.observableList(List.of(8,9,10,11,12,14,16,18,24,32,48,60,72)));
-        fontSizeComboBox.setValue(32);
+        fontSizeComboBox.setValue(32); // Default font size
 
         fontFamilyComboBox.setItems(FXCollections.observableArrayList(Font.getFamilies()));
         fontFamilyComboBox.setValue("Arial"); // Default font family
+
+        fontSizeComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if(newVal!= null)fontSizeSlider.setValue(newVal);
+        });
+
+        fontSizeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            int round = (int) (Math.round(newVal.doubleValue()));
+            System.out.println(round + " - " + newVal.doubleValue());
+            fontSizeComboBox.setValue(round);
+        });
 
         vBoxFont.setVisible(false);
         vBoxFont.setManaged(false);
