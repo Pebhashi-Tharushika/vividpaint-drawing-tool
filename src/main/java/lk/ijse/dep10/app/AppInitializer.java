@@ -24,7 +24,7 @@ public class AppInitializer extends Application {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
 
-        primaryStage.setTitle("Canvas Demo");
+        primaryStage.setTitle("Vivid-Paint");
         primaryStage.show();
         primaryStage.centerOnScreen();
     }

@@ -1,11 +1,8 @@
-# Java FX Canvas
+# VividPaint Drawing Tool
 
-A simple simple drawing app using Java FX
+A simple drawing app using Java FX
 
-### Outline
-- Color Picker
-- Canvas
-- 2D Graphic Context
+
 
 ### License
 Copyright 2023 MBPT. All Rights Reserved.
