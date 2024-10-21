@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXHamburger?>
 <?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXToggleNode?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.ColorPicker?>
@@ -23,7 +23,7 @@
 
 <AnchorPane fx:id="root" prefHeight="919.0" prefWidth="1448.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep10.app.controller.MainFormController">
    <children>
-      <Canvas fx:id="cnvMain" height="919.0" layoutX="1.0" layoutY="1.0" onMouseDragged="#cnvMainOnMouseDragged" onMousePressed="#cnvMainOnMousePressed" onMouseReleased="#cnvMainOnMouseReleased" width="1448.0" />
+      <Canvas fx:id="cnvMain" height="919.0" layoutX="1.0" layoutY="1.0" onMouseDragged="#cnvMainOnMouseDragged" onMousePressed="#cnvMainOnMousePressed" width="1448.0" />
       <JFXHamburger fx:id="hamburger" layoutX="14.0" layoutY="21.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
       <JFXDrawer fx:id="drawer" defaultDrawerSize="256.0" layoutX="251.0" layoutY="54.0" prefHeight="845.0" prefWidth="256.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
@@ -152,9 +152,21 @@
                         </Label>
                         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="226.0" spacing="30.0">
                            <children>
-                              <JFXButton fx:id="btnSmall" prefHeight="24.0" prefWidth="23.0" style="-fx-background-color: #b699d7;" text=" " textFill="#b699d7" />
-                              <JFXButton fx:id="btnMedium" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #b699d7;" text=" " textFill="#b699d7" />
-                              <JFXButton fx:id="btnLarge" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: #b699d7;" text=" " textFill="#b699d7" />
+                              <JFXToggleNode fx:id="btnSmall" prefHeight="24.0" prefWidth="24.0" style="-fx-background-color: #b699d7;" textFill="#b699d7">
+                                 <selectedColor>
+                                    <Color red="0.32688501477241516" green="0.17389999330043793" blue="0.4699999988079071" />
+                                 </selectedColor>
+                              </JFXToggleNode>
+                              <JFXToggleNode fx:id="btnMedium" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #b699d7;" textFill="#b699d7">
+                                 <selectedColor>
+                                    <Color red="0.32688501477241516" green="0.17389999330043793" blue="0.4699999988079071" />
+                                 </selectedColor>
+                              </JFXToggleNode>
+                              <JFXToggleNode fx:id="btnLarge" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: #b699d7;" textFill="#b699d7">
+                                 <selectedColor>
+                                    <Color red="0.32688501477241516" green="0.17389999330043793" blue="0.4699999988079071" />
+                                 </selectedColor>
+                              </JFXToggleNode>
                            </children>
                         </HBox>
                      </children>
@@ -189,6 +201,5 @@
             </VBox>
          </children>
       </JFXDrawer>
-      <JFXButton layoutX="416.0" layoutY="192.0" prefHeight="24.0" prefWidth="23.0" text=" " />
    </children>
 </AnchorPane>

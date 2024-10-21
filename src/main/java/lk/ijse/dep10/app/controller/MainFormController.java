@@ -1,9 +1,6 @@
 package lk.ijse.dep10.app.controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.controls.JFXSlider;
+import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.SnapshotParameters;
@@ -41,9 +38,10 @@ public class MainFormController {
     public VBox vBoxFont;
     public ComboBox<String> fontFamilyComboBox;
     public VBox vBoxEraser;
-    public JFXButton btnSmall;
-    public JFXButton btnMedium;
-    public JFXButton btnLarge;
+    public JFXToggleNode btnSmall;
+    public JFXToggleNode btnMedium;
+    public JFXToggleNode btnLarge;
+
     private double x1;
     private double y1;
     private WritableImage snapshot;
@@ -52,6 +50,9 @@ public class MainFormController {
     private String enteredText = "";
     private TextField textField;
 
+    private final Color canvasBackgroundColor = Color.WHITE;
+
+
 
     public void initialize() {
         /* It seems like the canvas is not resizing in spite of setting the anchors */
@@ -59,6 +60,7 @@ public class MainFormController {
         cnvMain.heightProperty().bind(root.heightProperty());
 
         gc = cnvMain.getGraphicsContext2D();
+
         gc.setStroke(clrStroke.getValue());
         gc.setFill(clrFill.getValue());
 
@@ -92,8 +94,11 @@ public class MainFormController {
         btnRect.setStyle(selectedColor);
 
         group.selectedToggleProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal == null && oldVal != null) {
+                oldVal.setSelected(true); // Re-select previous toggle if deselected
+            }
 
-            if (!newVal.equals(btnText)) {
+            if (newVal!= null && !newVal.equals(btnText)) {
                 if (textField != null) {
                     root.getChildren().remove(textField); // Remove the TextField from the root pane
                     textField = null;
@@ -105,6 +110,7 @@ public class MainFormController {
             if (!btnEraser.isSelected()) {
                 gc.setLineWidth(1);
             } else {
+                gc.setLineWidth(10);
                 drawer.setPrefHeight(770);
             }
 
@@ -113,6 +119,29 @@ public class MainFormController {
             }
         });
 
+        ToggleGroup eraserGroup = new ToggleGroup();
+        btnSmall.setToggleGroup(eraserGroup);
+        btnMedium.setToggleGroup(eraserGroup);
+        btnLarge.setToggleGroup(eraserGroup);
+
+        btnSmall.setSelected(true);
+
+        eraserGroup.selectedToggleProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal == null && oldVal != null) {
+                oldVal.setSelected(true); // Re-select previous toggle if deselected
+            }
+            if(btnSmall.isSelected()){
+                System.out.println("small");
+                gc.setLineWidth(10);
+            } else if (btnMedium.isSelected()) {
+                System.out.println("medium");
+                gc.setLineWidth(25);
+            } else if (btnLarge.isSelected()) {
+                gc.setLineWidth(50);
+                System.out.println("large");
+            }
+
+        });
 
         btnRect.setOnMouseClicked(event -> changeSelectedButtonColorAndFontAppearance(btnRect));
         btnRoundRect.setOnMouseClicked(event -> changeSelectedButtonColorAndFontAppearance(btnRoundRect));
@@ -183,12 +212,13 @@ public class MainFormController {
         } else if (btnCircle.isSelected()) {
             drawCircle(x1, y1, width, height);
         } else if (btnPencil.isSelected()) {
+            gc.drawImage(snapshot, 0, 0);
             gc.setStroke(clrStroke.getValue());
             gc.lineTo(x2, y2);
             gc.stroke();
         } else if (btnEraser.isSelected()) {
+            gc.drawImage(snapshot, 0, 0);
             gc.setStroke(Color.WHITE);
-            gc.setLineWidth(10);
             gc.lineTo(x2, y2);
             gc.stroke();
         }
@@ -283,14 +313,6 @@ public class MainFormController {
         gc.strokeText(enteredText, x1, y1);
     }
 
-    public void cnvMainOnMouseReleased(MouseEvent mouseEvent) {
-        System.out.println("Release");
-        /*double x2 = mouseEvent.getX();
-        double y2 = mouseEvent.getY();
-        double width = x2 - x1;
-        double height = y2 - y1;*/
-
-    }
 
     public void clrFillOnAction(ActionEvent actionEvent) {
         gc.setFill(clrFill.getValue());
@@ -299,8 +321,6 @@ public class MainFormController {
     public void clrStrokeOnAction(ActionEvent actionEvent) {
         gc.setStroke(clrStroke.getValue());
     }
-
-
 }
 
 
