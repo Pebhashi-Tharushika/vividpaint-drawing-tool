@@ -62,6 +62,7 @@ public class MainFormController {
         gc.setStroke(clrStroke.getValue());
         gc.setFill(clrFill.getValue());
 
+        drawer.setPrefHeight(700);
         drawer.setSidePane(vBox); // Add side pane to the drawer
         drawer.open(); // Keep the drawer open initially
 
@@ -91,15 +92,24 @@ public class MainFormController {
         btnRect.setStyle(selectedColor);
 
         group.selectedToggleProperty().addListener((obs, oldVal, newVal) -> {
+
             if (!newVal.equals(btnText)) {
                 if (textField != null) {
                     root.getChildren().remove(textField); // Remove the TextField from the root pane
                     textField = null;
                 }
+            }else{
+                drawer.setPrefHeight(810);
             }
 
             if (!btnEraser.isSelected()) {
                 gc.setLineWidth(1);
+            } else {
+                drawer.setPrefHeight(770);
+            }
+
+            if(!btnEraser.isSelected() && !btnText.isSelected()){
+                drawer.setPrefHeight(700);
             }
         });
 
