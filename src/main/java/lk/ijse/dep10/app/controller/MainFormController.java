@@ -1,13 +1,11 @@
 package lk.ijse.dep10.app.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXSlider;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -42,6 +40,10 @@ public class MainFormController {
     public ComboBox<Integer> fontSizeComboBox;
     public VBox vBoxFont;
     public ComboBox<String> fontFamilyComboBox;
+    public VBox vBoxEraser;
+    public JFXButton btnSmall;
+    public JFXButton btnMedium;
+    public JFXButton btnLarge;
     private double x1;
     private double y1;
     private WritableImage snapshot;
@@ -88,6 +90,20 @@ public class MainFormController {
         btnRect.setSelected(true);// Select rectangle initially
         btnRect.setStyle(selectedColor);
 
+        group.selectedToggleProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal.equals(btnText)) {
+                if (textField != null) {
+                    root.getChildren().remove(textField); // Remove the TextField from the root pane
+                    textField = null;
+                }
+            }
+
+            if (!btnEraser.isSelected()) {
+                gc.setLineWidth(1);
+            }
+        });
+
+
         btnRect.setOnMouseClicked(event -> changeSelectedButtonColorAndFontAppearance(btnRect));
         btnRoundRect.setOnMouseClicked(event -> changeSelectedButtonColorAndFontAppearance(btnRoundRect));
         btnCircle.setOnMouseClicked(event -> changeSelectedButtonColorAndFontAppearance(btnCircle));
@@ -97,14 +113,14 @@ public class MainFormController {
 
         fontSizeSlider.setStyle("-jfx-default-track: #7d7d7d;" + " -jfx-default-thumb: #8c1af6;");
 
-        fontSizeComboBox.setItems(FXCollections.observableList(List.of(8,9,10,11,12,14,16,18,24,32,48,60,72)));
+        fontSizeComboBox.setItems(FXCollections.observableList(List.of(8, 9, 10, 11, 12, 14, 16, 18, 24, 32, 48, 60, 72)));
         fontSizeComboBox.setValue(32); // Default font size
 
         fontFamilyComboBox.setItems(FXCollections.observableArrayList(Font.getFamilies()));
         fontFamilyComboBox.setValue("Arial"); // Default font family
 
         fontSizeComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-            if(newVal!= null)fontSizeSlider.setValue(newVal);
+            if (newVal != null) fontSizeSlider.setValue(newVal);
         });
 
         fontSizeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
@@ -115,6 +131,9 @@ public class MainFormController {
 
         vBoxFont.setVisible(false);
         vBoxFont.setManaged(false);
+
+        vBoxEraser.setVisible(false);
+        vBoxEraser.setManaged(false);
 
         clrFill.setValue(Color.WHITE);
         clrStroke.setValue(Color.BLACK);
@@ -128,7 +147,10 @@ public class MainFormController {
         vBoxFont.setVisible(selectedButton == btnText);
         vBoxFont.setManaged(selectedButton == btnText); // Show font options only if btnText is selected
 
-         // Change color for the selected button, reset others
+        vBoxEraser.setVisible(selectedButton == btnEraser);
+        vBoxEraser.setManaged(selectedButton == btnEraser); // Show eraser size options only if btnEraser is selected
+
+        // Change color for the selected button, reset others
         btnRect.setStyle(btnRect == selectedButton ? selectedColor : "");
         btnRoundRect.setStyle(btnRoundRect == selectedButton ? selectedColor : "");
         btnCircle.setStyle(btnCircle == selectedButton ? selectedColor : "");
@@ -151,10 +173,14 @@ public class MainFormController {
         } else if (btnCircle.isSelected()) {
             drawCircle(x1, y1, width, height);
         } else if (btnPencil.isSelected()) {
+            gc.setStroke(clrStroke.getValue());
             gc.lineTo(x2, y2);
             gc.stroke();
         } else if (btnEraser.isSelected()) {
-            // Implement eraser functionality if needed
+            gc.setStroke(Color.WHITE);
+            gc.setLineWidth(10);
+            gc.lineTo(x2, y2);
+            gc.stroke();
         }
 
     }
@@ -166,7 +192,7 @@ public class MainFormController {
 
         if (btnText.isSelected()) {
             showTextField(x1, y1); // Show TextField at mouse click
-        } else if (btnPencil.isSelected()) {
+        } else if (btnPencil.isSelected() || btnEraser.isSelected()) {
             gc.beginPath();
         }
     }
