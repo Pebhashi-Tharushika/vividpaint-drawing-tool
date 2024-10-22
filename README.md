@@ -70,7 +70,7 @@ Text Addition:
 ![](assets/preview1.png) 
 ![](assets/preview2.png) 
 ![](assets/preview3.png) 
-![](assets/preview4.gif)
+![](assets/preview45.gif)
 
 
 ### Contributing
