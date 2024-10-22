@@ -111,6 +111,7 @@ public class MainFormController {
                 gc.setLineWidth(1);
             } else {
                 gc.setLineWidth(10);
+                btnSmall.setSelected(true);
                 drawer.setPrefHeight(770);
             }
 
@@ -131,14 +132,11 @@ public class MainFormController {
                 oldVal.setSelected(true); // Re-select previous toggle if deselected
             }
             if(btnSmall.isSelected()){
-                System.out.println("small");
                 gc.setLineWidth(10);
             } else if (btnMedium.isSelected()) {
-                System.out.println("medium");
                 gc.setLineWidth(25);
             } else if (btnLarge.isSelected()) {
                 gc.setLineWidth(50);
-                System.out.println("large");
             }
 
         });
