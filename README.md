@@ -73,7 +73,7 @@ Text Addition:
 
 
 <p align="center">
-  <img src="assets/preview5.gif" width="1100px" />
+  <img src="assets/preview4.gif" width="1100px" />
 </p>
 
 
