@@ -72,8 +72,8 @@ Text Addition:
 ![](assets/preview3.png) 
 
 
-<p align="center">
-  <img src="assets/preview4.gif" width="1100px" />
+<p>
+  <img src="assets/preview4.gif" width="1463px" />
 </p>
 
 
