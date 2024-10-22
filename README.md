@@ -67,6 +67,10 @@ Text Addition:
 - Enter your desired text and customize its font family, size, fill color and stroke color within the provided options.
 
 ### Application Preview
+![](assets/preview1.png) 
+![](assets/preview2.png) 
+![](assets/preview3.png) 
+![](assets/preview4.gif)
 
 
 ### Contributing
@@ -75,4 +79,4 @@ Contributions are welcome! If you'd like to contribute, please fork the reposito
 
 ### License
 Copyright 2023 MBPT. All Rights Reserved.
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
