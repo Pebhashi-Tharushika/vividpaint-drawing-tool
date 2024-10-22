@@ -70,7 +70,13 @@ Text Addition:
 ![](assets/preview1.png) 
 ![](assets/preview2.png) 
 ![](assets/preview3.png) 
-![](assets/preview5.gif)
+
+
+<p align="center">
+  <img src="assets/preview5.gif" width="1100px" />
+</p>
+
+
 
 
 ### Contributing
